@@ -160,7 +160,7 @@ class Reader
         if (pathinfo($file, PATHINFO_EXTENSION) === 'json') {
             $translations = Arr::dot(json_decode(file_get_contents($file), true));
         } else {
-            $translations = Arr::dot($this->app['translator']->getLoader()->load($locale, $group, $namespace));
+            $translations = Arr::dot(include $file);
         }
 
         foreach ($translations as $key => $value) {
